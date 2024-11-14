@@ -1,106 +1,64 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CatalogScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Align(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            'Catálogo',
-            style: TextStyle(
-              color: Color(0xFF5E9B8F),
-              fontSize: 35, 
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        iconTheme: IconThemeData(color: Color(0xFF5E9B8F)),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Color(0xFFF0F1F5), 
-                prefixIcon: Icon(Icons.search, color: Color(0xFF9E9E9E)), 
-                hintText: 'Buscar procedimientos',
-                hintStyle: TextStyle(color: Color(0xFF9E9E9E)), 
-                contentPadding: EdgeInsets.symmetric(vertical: 0), 
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(25), 
-                  borderSide: BorderSide.none, 
-                ),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TextField(
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Color(0xFFF0F1F5),
+              prefixIcon: Icon(Icons.search, color: Color(0xFF9E9E9E), size: 30),
+              hintText: 'Buscar procedimientos',
+              hintStyle: TextStyle(color: Color(0xFF9E9E9E)),
+              contentPadding: EdgeInsets.symmetric(vertical: 0),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(25),
+                borderSide: BorderSide.none,
               ),
             ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _buildCategoryIcon(Icons.work, 'Productos'),
-                _buildCategoryIcon(Icons.face, '###'),
-                _buildCategoryIcon(Icons.checkroom, '###'),
-                _buildCategoryIcon(Icons.person, '###'),
-                _buildCategoryIcon(Icons.noise_aware, '###'),
-              ],
+          ),
+          SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildCategoryIcon(Icons.work, 'Productos'),
+              _buildCategoryIcon(Icons.face, 'Facial'),
+              _buildCategoryIcon(FontAwesomeIcons.male, 'Cuerpo'),
+              _buildCategoryIcon(FontAwesomeIcons.handPaper, 'Manos'),
+              _buildCategoryIcon(FontAwesomeIcons.shoePrints, 'Pies'),
+            ],
+          ),
+          SizedBox(height: 20),
+          SizedBox(
+            height: 250,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 6,
+              itemBuilder: (context, index) {
+                return _buildProcedureCard(
+                  'Procedimiento ${(index % 3) + 1}',
+                  'Moldea tu ###',
+                );
+              },
             ),
-            SizedBox(height: 20),
-            Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                children: [
-                  _buildProcedureCard('Procedimiento ###', 'Moldea tu ###'),
-                  _buildProcedureCard('Procedimiento ###', 'Moldea tu ###'),
-                  _buildProcedurePlaceholder(),
-                  _buildProcedurePlaceholder(),
-                ],
-              ),
+          ),
+          SizedBox(height: 20),
+          Expanded(
+            child: ListView.builder(
+              scrollDirection: Axis.vertical,
+              itemCount: 6,
+              itemBuilder: (context, index) {
+                return _buildSmallCard(context);
+              },
             ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 1,
-        selectedItemColor: Color(0xFF5E9B8F),
-        unselectedItemColor: Colors.grey,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Inicio',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.grid_view),
-            label: 'Catálogo',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.local_offer),
-            label: 'Promociones',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Perfil',
           ),
         ],
-        onTap: (index) {
-          switch (index) {
-            case 0:
-              Navigator.pushNamed(context, '/home');
-              break;
-            case 2:
-              Navigator.pushNamed(context, '/promotions');
-              break;
-            case 3:
-              Navigator.pushNamed(context, '/profile');
-              break;
-          }
-        },
       ),
     );
   }
@@ -109,8 +67,9 @@ class CatalogScreen extends StatelessWidget {
     return Column(
       children: [
         CircleAvatar(
+          radius: 25,
           backgroundColor: Colors.grey[200],
-          child: Icon(icon, color: Colors.black),
+          child: Icon(icon, color: Colors.black, size: 28),
         ),
         SizedBox(height: 5),
         Text(label),
@@ -119,36 +78,91 @@ class CatalogScreen extends StatelessWidget {
   }
 
   Widget _buildProcedureCard(String title, String subtitle) {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Image.network(
-              'https://via.placeholder.com/150',
-              fit: BoxFit.cover,
-              width: double.infinity,
+    return Container(
+      width: 260,
+      margin: EdgeInsets.only(right: 10),
+      child: Card(
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Image.asset(
+                'lib/assets/images/imgCarrousel.png',
+                fit: BoxFit.cover,
+                width: double.infinity,
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
-                Text(subtitle, style: TextStyle(color: Colors.grey)),
-              ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text(subtitle, style: TextStyle(color: Colors.grey)),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildProcedurePlaceholder() {
+  Widget _buildSmallCard(BuildContext context) {
     return Container(
-      color: Colors.grey[200],
+      width: MediaQuery.of(context).size.width * 0.8,
+      height: 120,
+      margin: EdgeInsets.only(bottom: 10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 100,
+            height: 120,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(8),
+                bottomLeft: Radius.circular(8),
+              ),
+              image: DecorationImage(
+                image: AssetImage('lib/assets/images/imgCarrousel.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Título',
+                    style: TextStyle(
+                      color: Colors.grey[800],
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    'Descripción',
+                    style: TextStyle(
+                      color: Colors.grey[600],
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
