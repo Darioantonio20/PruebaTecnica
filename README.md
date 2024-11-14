@@ -1,16 +1,32 @@
-# prueba_tecnica
+# Prueba Técnica de Flutter
 
-A new Flutter project.
+Este es un proyecto de Flutter creado como parte de una prueba técnica para una posición de desarrollador front-end.
 
-## Getting Started
+## Descripción
 
-This project is a starting point for a Flutter application.
+El objetivo de este proyecto es demostrar habilidades en el desarrollo de aplicaciones móviles utilizando Flutter. La aplicación incluye varias funcionalidades que son comunes en aplicaciones móviles modernas.
 
-A few resources to get you started if this is your first Flutter project:
+## Instalación
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Para ejecutar este proyecto localmente, siga estos pasos:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Clona este repositorio:
+    ```sh
+    git clone https://github.com/Darioantonio20/PruebaTecnica.git
+    ```
+2. Navega al directorio del proyecto:
+    ```sh
+    cd prueba_tecnica
+    ```
+3. Instala las dependencias:
+    ```sh
+    flutter pub get
+    ```
+4. Ejecuta la aplicación:
+    ```sh
+    flutter run
+    ```
+
+Realizado por : 
+
+## Darío Antonio Gutiérrez Álvarez

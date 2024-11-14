@@ -3,6 +3,7 @@ import 'package:prueba_tecnica/screens/home_screen.dart';
 import 'package:prueba_tecnica/screens/profile_screen.dart';
 import 'package:prueba_tecnica/screens/promotions_screen.dart';
 import 'screens/catalog_screen.dart';
+import 'screens/detail_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         '/catalog': (context) => MainScreen(initialIndex: 1),
         '/promotions': (context) => MainScreen(initialIndex: 2),
         '/profile': (context) => MainScreen(initialIndex: 3),
+        '/details': (context) => DetailScreen(),
       },
     );
   }

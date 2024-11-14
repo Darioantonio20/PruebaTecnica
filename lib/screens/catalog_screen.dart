@@ -27,11 +27,36 @@ class CatalogScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildCategoryIcon(Icons.work, 'Productos'),
-              _buildCategoryIcon(Icons.face, 'Facial'),
-              _buildCategoryIcon(FontAwesomeIcons.male, 'Cuerpo'),
-              _buildCategoryIcon(FontAwesomeIcons.handPaper, 'Manos'),
-              _buildCategoryIcon(FontAwesomeIcons.shoePrints, 'Pies'),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed('/details', arguments: 'Productos');
+                },
+                child: _buildCategoryIcon(Icons.work, 'Productos'),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed('/details', arguments: 'Facial');
+                },
+                child: _buildCategoryIcon(Icons.face, 'Facial'),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed('/details', arguments: 'Cuerpo');
+                },
+                child: _buildCategoryIcon(FontAwesomeIcons.male, 'Cuerpo'),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed('/details', arguments: 'Manos');
+                },
+                child: _buildCategoryIcon(FontAwesomeIcons.handPaper, 'Manos'),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed('/details', arguments: 'Pies');
+                },
+                child: _buildCategoryIcon(FontAwesomeIcons.shoePrints, 'Pies'),
+              ),
             ],
           ),
           SizedBox(height: 20),
@@ -41,9 +66,17 @@ class CatalogScreen extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: 6,
               itemBuilder: (context, index) {
-                return _buildProcedureCard(
-                  'Procedimiento ${(index % 3) + 1}',
-                  'Moldea tu ###',
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(
+                      '/details',
+                      arguments: 'Procedimiento ${(index % 3) + 1}',
+                    );
+                  },
+                  child: _buildProcedureCard(
+                    'Procedimiento ${(index % 3) + 1}',
+                    'Moldea tu ###',
+                  ),
                 );
               },
             ),
@@ -54,7 +87,15 @@ class CatalogScreen extends StatelessWidget {
               scrollDirection: Axis.vertical,
               itemCount: 6,
               itemBuilder: (context, index) {
-                return _buildSmallCard(context);
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(
+                      '/details',
+                      arguments: 'Título $index',
+                    );
+                  },
+                  child: _buildSmallCard(context),
+                );
               },
             ),
           ),
